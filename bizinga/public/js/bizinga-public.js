@@ -99,17 +99,18 @@
 			loop:true,
 			margin:10,
 			responsiveClass:true,
+			autoplay: true,
 			responsive:{
 				0:{
 					items:1,
 					nav:true
 				},
 				600:{
-					items:3,
+					items:2,
 					nav:true
 				},
 				1280:{
-					items:5,
+					items:3,
 					nav:true
 				}
 			}

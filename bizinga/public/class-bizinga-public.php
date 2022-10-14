@@ -160,7 +160,7 @@ class Bizinga_Public {
 				$reviewerImg = $objReview->reviewer->thumbnailUrl;
 				$reviewerName = !empty($objReview->reviewer->firstName) ? $objReview->reviewer->firstName : $objReview->reviewer->nickName;		
 				$reviewerHtml .='<div class="item">
-								<div class="card">
+								<div class="card" style="text-align: left;">
 									<img class="card-img-top" src="'.$reviewerImg.'" alt="Card image cap">
 									<div class="card-body">
 									<h5 class="card-title">'.$reviewerName.'</h5>
@@ -171,9 +171,9 @@ class Bizinga_Public {
 											$reviewerHtml.='<span class="star-num">'.$objReview->rating.'<span><img src='.plugin_dir_url(( __FILE__ ) ) . 'images/fill-2-copy-45.svg'.'></span></span>';
 										}	
 										if($objReview->sourceType == 'BirdEye'){
-											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><span class="date">'.$objReview->reviewDate .'</span>';
+											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
 										}else{
-											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->reviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><span class="date">'.$objReview->reviewDate .'</span>';
+											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->reviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
 
 										} 
 										$reviewerHtml.= $objReview->comments .
