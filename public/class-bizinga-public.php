@@ -150,26 +150,30 @@ class Bizinga_Public {
 				$objReview->sourceType = $objReview->sourceType == 'Our Website' ? "BizingaReviews" : $objReview->sourceType;
 				$objReview->recommended = $objReview->recommended == 1 ? "Recommended" : "Null";
 				$reviewerImg = $objReview->reviewer->thumbnailUrl;
-				$reviewerName = !empty($objReview->reviewer->firstName) ? $objReview->reviewer->firstName : $objReview->reviewer->nickName;		
+				$reviewerName = !empty($objReview->reviewer->firstName) ? $objReview->reviewer->firstName : $objReview->reviewer->nickName;	
 				$reviewerHtml .='<div class="item">
 								<div class="card" style="text-align: left;">
 									<img class="card-img-top" src="'.$reviewerImg.'" alt="Card image cap">
 									<div class="card-body">
 									<h5 class="card-title">'.$reviewerName.'</h5>
 									<p class="card-text">';
-										if ($objReview->recommended =='Recommended'){
+										if ($objReview->recommended == 'Recommended') {
 											$reviewerHtml.='<span><img src='.plugin_dir_url(( __FILE__ ) ) . 'images/fb_r.svg'.'></span><span class="beFBColor">Recommended</span>';
-										}else {
+										} else {
 											$reviewerHtml.='<span class="star-num">'.$objReview->rating.'<span><img src='.plugin_dir_url(( __FILE__ ) ) . 'images/fill-2-copy-45.svg'.'></span></span>';
 										}	
-										if($objReview->sourceType == 'BizingaReviews'){
+										if ($objReview->sourceType == 'BizingaReviews') {
 											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
-										}else{
+										} else {
 											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->reviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
-
 										} 
-										$reviewerHtml.= $objReview->comments .
-									'</p>
+										$max = 35;
+										if( strlen( $objReview->comments ) > $max ) {
+											$reviewerHtml .= substr( $objReview->comments, 0, $max ). '<a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'> Read more</a>';
+										} else {
+											$reviewerHtml .= $objReview->comments;
+										} 
+										$reviewerHtml .='</p>
 									</div>
 								</div>
 							</div>';
@@ -201,4 +205,14 @@ class Bizinga_Public {
 	//Add the above custom CSS via wp_add_inline_style
 	wp_add_inline_style( $this->Bizinga.'-custom-style', $custom_style_css ); //Pass the variable into the main style sheet ID
 	}
+
+	public function truncateString($str, $num) {
+		// If the length of str is less than or equal to num
+		// just return str--don't truncate it.
+		if ($str.length <= $num) {
+		  return $str;
+		}
+		// Return str truncated with '...' concatenated to the end of str.
+		return $str.slice(0, $num) + '...';
+	  }
 }

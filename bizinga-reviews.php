@@ -10,7 +10,7 @@
  *
  * @link              http://example.com
  * @since             1.0.0
- * @package           Bizinga
+ * @package           Bizinga Reviews
  *
  * @wordpress-plugin
  * Plugin Name:       Bizinga Reviews Plugin
