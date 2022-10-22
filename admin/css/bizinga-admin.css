@@ -403,3 +403,10 @@ p.submit {
     margin-top: 0px;
     padding-top: 0px;
 }
+.bizinga-border-size, .bizinga-border-color, .bizinga-border-radius {
+  display: none;
+} 
+.small-txt {
+  float: none;
+  width: 22%;
+}

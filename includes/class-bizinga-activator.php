@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    Bizinga
  * @subpackage Bizinga/includes
- * @author     Your Name <email@example.com>
+ * @author     sandeep.bly@gmail.com
  */
 class Bizinga_Activator {
 

@@ -25,9 +25,9 @@
  * @since      1.0.0
  * @package    Bizinga
  * @subpackage Bizinga/includes
- * @author     Your Name <email@example.com>
+ * @author     sandeep.bly@gmail.com
  */
-class Bizinga {
+class Bizinga_Reviews {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -175,6 +175,7 @@ class Bizinga {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'bizinga_add_inline_css' );
 		// $this->loader->add_shortcode( 'BirdEyePlugin', $plugin_public, 'bizinga_ui' );
 	}
 

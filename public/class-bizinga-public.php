@@ -18,7 +18,7 @@
  *
  * @package    Bizinga
  * @subpackage Bizinga/public
- * @author     Your Name <email@example.com>
+ * @author     sandeep.bly@gmail.com
  */
 class Bizinga_Public {
 
@@ -39,7 +39,7 @@ class Bizinga_Public {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
-
+	
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,7 +51,6 @@ class Bizinga_Public {
 
 		$this->Bizinga = $Bizinga;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -112,13 +111,11 @@ class Bizinga_Public {
 	public function register_shortcodes() {
 		add_shortcode( 'bizinga-reviews', array( $this, 'bizinga_ui') );
 	}
-	// ob_start();
+
 	public function bizinga_ui() {
-	
 		$businessNumber = get_option('businessNumber');
 		$apiKey = get_option('apiKey');
 		$apiHost = get_option('apiHost');
-		$cssStyle = get_option('cssStyle');
 		$check = get_option('demo-checkbox');
 		$appointTab = get_option('Appointment-tab');
 		$reviewTab = get_option('review-tab');
@@ -143,11 +140,6 @@ class Bizinga_Public {
 		<script type="text/javascript">
 			const ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 		</script>
-		<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
-		<style type="text/css"><?=$cssStyle;?></style>
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-
-		
 			<?php
 			$reviewerHtml ='<div class="owl-carousel owl-theme">';
 			// Reviews GET API consume
@@ -155,7 +147,7 @@ class Bizinga_Public {
 			$objReviews = json_decode($response);
 		
 			foreach($objReviews as $objReview) {
-				$objReview->sourceType = $objReview->sourceType == 'Our Website' ? "BirdEye" : $objReview->sourceType;
+				$objReview->sourceType = $objReview->sourceType == 'Our Website' ? "BizingaReviews" : $objReview->sourceType;
 				$objReview->recommended = $objReview->recommended == 1 ? "Recommended" : "Null";
 				$reviewerImg = $objReview->reviewer->thumbnailUrl;
 				$reviewerName = !empty($objReview->reviewer->firstName) ? $objReview->reviewer->firstName : $objReview->reviewer->nickName;		
@@ -170,7 +162,7 @@ class Bizinga_Public {
 										}else {
 											$reviewerHtml.='<span class="star-num">'.$objReview->rating.'<span><img src='.plugin_dir_url(( __FILE__ ) ) . 'images/fill-2-copy-45.svg'.'></span></span>';
 										}	
-										if($objReview->sourceType == 'BirdEye'){
+										if($objReview->sourceType == 'BizingaReviews'){
 											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
 										}else{
 											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->reviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
@@ -181,15 +173,32 @@ class Bizinga_Public {
 									</div>
 								</div>
 							</div>';
-				// echo $reviewerHtml;
 			}
-			// return ob_get_clean();
 			return $reviewerHtml;
 			?>
 		</div>  
 	
 	</section> <?php
+	}
 
+	//Adding CSS inline style to an existing CSS stylesheet
+	public function bizinga_add_inline_css() {
+		$borderSize = get_option('bizinga-border-size');
+		$borderColor = get_option('bizinga-border-color');
+		$borderRadius = get_option('bizinga-border-radius');
+		wp_enqueue_style(
+			$this->Bizinga.'-custom-style',
+			plugin_dir_url( __FILE__ ) . 'css/custom_script.css', array(), $this->version, 'all'
+		);
+		//All the user input CSS settings as set in the plugin settings
+		$custom_style_css = "
+		.owl-item .card {
+			border-width: {$borderSize}px;
+			border-color: {$borderColor};
+			border-radius: {$borderRadius}px;
+		}";
 
+	//Add the above custom CSS via wp_add_inline_style
+	wp_add_inline_style( $this->Bizinga.'-custom-style', $custom_style_css ); //Pass the variable into the main style sheet ID
 	}
 }

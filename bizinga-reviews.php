@@ -13,9 +13,9 @@
  * @package           Bizinga
  *
  * @wordpress-plugin
- * Plugin Name:       Bizinga Reviews Plugin
+ * Plugin Name:       Bizinga Reviewss Plugin
  * Plugin URI:        http://example.com/bizinga-uri/
- * Description:       Business Reviews for pages/posts
+ * Description:       Business Reviewss for pages/posts
  * Version:           1.0.0
  * Author:            SS Technologies
  * Author URI:        http://example.com/
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'Bizinga_VERSION', '1.0.0' );
+define( 'Bizinga_VERSION', '1.0.1' );
 
 /**
  * The code that runs during plugin activation.
@@ -75,7 +75,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-bizinga.php';
  */
 function run_bizinga() {
 
-	$plugin = new Bizinga();
+	$plugin = new Bizinga_Reviews();
 	$plugin->run();
 
 }
