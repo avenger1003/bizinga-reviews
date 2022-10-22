@@ -13,9 +13,9 @@
  * @package           Bizinga
  *
  * @wordpress-plugin
- * Plugin Name:       Bizinga Reviewss Plugin
+ * Plugin Name:       Bizinga Reviews Plugin
  * Plugin URI:        http://example.com/bizinga-uri/
- * Description:       Business Reviewss for pages/posts
+ * Description:       Business Reviews for pages/posts
  * Version:           1.0.0
  * Author:            SS Technologies
  * Author URI:        http://example.com/
