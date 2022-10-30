@@ -4,11 +4,11 @@
  */
 
  /*===========Bizinga Customer Reviews Styling=========*/
- @import url('https://fonts.googleapis.com/css?family=Roboto');
+ /* @import url('https://fonts.googleapis.com/css?family=Roboto');
  body {
      font-family: 'Roboto', sans-serif;
-   }
- .review-wrapper{
+   } */
+  .owl-carousel .review-wrapper{
  font-size: 12px;
  font-weight: normal;
  font-style: normal;
@@ -16,44 +16,44 @@
  letter-spacing: normal;
  padding:10px;
  }
- .heading{
+ .owl-carousel .heading{
   font-size: 13px;
  font-weight: 600;
  color: #212121;
  }
- .left, .right{
+ .owl-carousel .left,.owl-carousel  .right{
  padding: 15px;
  box-sizing: border-box;
  }
  /*Star Rating section starts*/
- p{
+ .owl-carousel p{
  font-size: 14px;
  font-weight: 500;
  color: #212121;
  margin: 0px;
  text-align: justify;
  }
- span, .starsWithBubble{
+ .owl-carousel span, .owl-carousel .starsWithBubble{
  display: inline-block;
  }
- .starOn{
+ .owl-carousel .starOn{
   color: #1976d2;
  }
- .card-content-wrapper{
+ .owl-carousel .card-content-wrapper{
  font-size: 11px;
  letter-spacing: -0.2px;
  color: #999999;
  }
- .review-summary{
+ .owl-carousel .review-summary{
  display:table;
  width: 100%;
  }
- .review-bar{
+ .owl-carousel .review-bar{
  display: table-cell;
  vertical-align: middle; 
  width:70%;
  }
- .review-summary .beInverseRating .ratingval {
+ .owl-carousel .review-summary .beInverseRating .ratingval {
    color: #999;
   
    display: inline-block;
@@ -62,7 +62,7 @@
    font-weight: 400;
    margin-right: 5px;
  }
- #reviewsBySite .review-summary .be-c-ratingval {
+ .owl-carousel #reviewsBySite .review-summary .be-c-ratingval {
    font-size: 55px;
    font-weight: 300;
    color: #1976d2;
@@ -70,7 +70,7 @@
    width: 100%;
  margin-top: 25%;
  } 
- .bf-brand-color-bg {
+ .owl-carousel .bf-brand-color-bg {
  background-color: #1976d2;
  display: inline-block; 
  border-radius: 2px;       
@@ -78,21 +78,21 @@
  margin: 2px 4px;
  height: 18px;
  }
- .number{
+ .owl-carousel .number{
   font-size: 11px;
  text-align: center;
  color: #666666;
  margin-top: 5px;
  }
- .review-bar .number{
+ .owl-carousel .review-bar .number{
  font-size: 11px;
  letter-spacing: -0.2px;
  color: #999999;
  }
- .stars-without-bubble .number{
+ .owl-carousel .stars-without-bubble .number{
  font-size: 12px;
  }
- .noRating {
+ .owl-carousel .noRating {
    padding-top: 10px;
    font-size: 11px;
    font-weight: normal;
@@ -103,37 +103,37 @@
    color: #666666;
  }
  /*Will be removed later*/
- .bar2{   
+ .owl-carousel .bar2{   
  width:4.6349206349206%; 
  }
- .bar3{
+ .owl-carousel .bar3{
  width:1.015873015873%; 
  }
  /*Star Rating section ends*/
  /*Review Sources starts*/
- .reviews-sources{
+ .owl-carousel .reviews-sources{
  padding: 20px 0px 0px;
  box-sizing: border-box;
  margin-bottom: -20px;
  }
- .reviews-sources span{
+ .owl-carousel .reviews-sources span{
  margin-bottom: 10px;
  margin-left: 3px;
  color: #535353;
  }
- .reviews-source input{
+ .owl-carousel .reviews-source input{
  margin: 5px 5px 5px 0px;
  }
- .reviews-source{
+ .owl-carousel .reviews-source{
    font-size: 12px;
  color: #212121;
  }
  /*Review Sources ends*/
  /*Buttons*/
- .actionButtonWrapper{
+ .owl-carousel .actionButtonWrapper{
  padding-top: 20px;
  }
- .actionButtonWrapper a {
+ .owl-carousel .actionButtonWrapper a {
  width: 150px;
  border-radius: 4px;
  display: block;
@@ -147,22 +147,22 @@
  cursor: pointer;
  padding: 13px 0px;
  }
- .actionButtonWrapper a:last-child {
+ .owl-carousel .actionButtonWrapper a:last-child {
    background-color: #1976d2;
  }
- .powered{
+ .owl-carousel .powered{
  text-align: center;
  padding-top: 20px;
  }
- .left hr{
+ .owl-carousel .left hr{
  margin-bottom: 0px;
  }
- .bew-avgstars {
+ .owl-carousel .bew-avgstars {
    text-align: center;
  }
  /*Left section ends*/
  /*Right section starts*/
- select{
+ .owl-carousel select{
      width: 154px;
    height: 26px;
    background-color: #ffffff;
@@ -171,29 +171,29 @@
   font-weight: normal;
   float: right;
  }
- hr{
+ .owl-carousel hr{
  opacity: 0.22;
    margin: 30px 0px;
    border: none;
    border-bottom: 2px solid #ccc;
  }
- .right .block{
+ .owl-carousel .right .block{
  border-bottom: none;
  padding-bottom: 15px;
  }
- .right .heading{
+ .owl-carousel .right .heading{
  font-weight: bold;
  margin-top: -15px;
    margin-left: 40px;
  }
- .person{
+ .owl-carousel .person{
  width: 38px;
  height: 37px;
  border-radius: 18px;
  margin-top:0px;
  display:none;
  }
- .star-num{
+ .owl-carousel .star-num{
    width: 30px;
  height: 17px;
  border-radius: 20px;
@@ -204,20 +204,20 @@
  line-height: 1.60;
  color: #ffffff;
  }
- .star-num > span {
+ .owl-carousel .star-num > span {
    height: 11px;
    display: inline-block;
    vertical-align: top;
    padding-top: 3px;
    padding-left: 2px;
  }
- .date{
+ .owl-carousel .date{
  font-size: 11px;
  font-weight: bold;
  line-height: 1.09;
  color: #585858;
  }
- .on-brand{
+ .owl-carousel .on-brand{
  font-size: 11px;
  font-weight: bold;
  line-height: 1.09;
@@ -225,43 +225,43 @@
  text-transform: capitalize;
  margin: 0px 2px 0 5px;
  }
- div.flex {
+ .owl-carousel div.flex {
    display: flex;
  }
  
- .flex p.image {
+ .owl-carousel .flex p.image {
    margin-top: -10px;
    margin-right: 9px;
  }
- .content{
+ .owl-carousel .content{
  font-size: 12px;
  line-height: 1.58;
  color: #212121;
  margin-top: 10px;
  }
- .on-brand .brand{
+ .owl-carousel .on-brand .brand{
   color: #1976d2;
  }
- .comment{
+ .owl-carousel .comment{
  line-height: 1.58;
  color: #212121;
  }
- .right .actionButtonWrapper{
+ .owl-carousel .right .actionButtonWrapper{
  padding-top: 0px;
  }
- .right .actionButtonWrapper a{
+ .owl-carousel .right .actionButtonWrapper a{
    background-color: #1976d2;
  }
  
- .block {
+ .owl-carousel .block {
  padding-bottom: 30px;
  border-radius: 3px;
  }
  
- .owl-carousel .owl-stage-outer {
+ .owl-stage-outer {
  height: 300px;
  }
- .owl-carousel .owl-item img {
+ .owl-item img {
  display: flex;
  width: 20%;
  align-self: center;

@@ -120,6 +120,11 @@ class Bizinga_Admin {
 		register_setting( 'bizinga-plugin-settings-group', 'bizinga-border-size' );
 		register_setting( 'bizinga-plugin-settings-group', 'bizinga-border-color' );
 		register_setting( 'bizinga-plugin-settings-group', 'bizinga-border-radius' );
+		register_setting( 'bizinga-plugin-settings-group', 'bizinga-review-background' );
+		register_setting( 'bizinga-plugin-settings-group', 'bizinga-review-color' );
+		register_setting( 'bizinga-plugin-settings-group', 'bizinga-review-link-color' );
+		register_setting( 'bizinga-plugin-settings-group', 'bizinga-review-star-color' );
+		register_setting( 'bizinga-plugin-settings-group', 'bizinga-review-star-background-color' );
 		register_setting( 'bizinga-plugin-settings-group', 'demo-checkbox');
 		register_setting( 'bizinga-plugin-settings-group', 'Appointment-tab');
 		register_setting( 'bizinga-plugin-settings-group', 'review-tab');
@@ -163,46 +168,42 @@ class Bizinga_Admin {
 								<label for="password1">API Host</label>
 								<input type="text" name="apiHost" value="api.birdeye.com" class="txt"/>
 							</div>
-							<div class="slider-container">
-								<label for="border-customiztion">Customize slider border</label>
-								<select id="border_container" name="border-value" class="form-select form-select-sm" aria-label=".form-select-sm">
-									<option selected>Select</option>
-									<option <?php if ($border_vaules == 1 ) echo 'selected' ; ?> value=1>Size</option>
-									<option <?php if ($border_vaules == 2 ) echo 'selected' ; ?> value=2>Color</option>
-									<option <?php if ($border_vaules == 3 ) echo 'selected' ; ?> value=3>Radius</option>
-								</select>	
-
-								<div class="bizinga-border-size">
-									<input type="number" name="bizinga-border-size" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-border-size') ); ?>"/>
-								</div>
-								<div class="bizinga-border-color">
-									<input type="color" name="bizinga-border-color"  class="small-txt" value="<?php echo esc_attr( get_option('bizinga-border-color') ); ?>"/>
-								</div>
-						
-								<div class="bizinga-border-radius">
-									<input type="number" name="bizinga-border-radius" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-border-radius') ); ?>"/>
-								</div>
+							<div>
+								<label for="bizinga-border-size">Rewview Border Size</label>
+								<input type="number" name="bizinga-border-size" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-border-size') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-border-color">Review Border Color</label>
+								<input type="color" name="bizinga-border-color"  class="small-txt" value="<?php echo esc_attr( get_option('bizinga-border-color') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-border-radius">Review Border Rounding</label>
+								<input type="number" name="bizinga-border-radius" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-border-radius') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-review-background">Review Background Color</label>
+								<input type="color" name="bizinga-review-background" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-review-background') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-review-color">Review Text Color</label>
+								<input type="color" name="bizinga-review-color" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-review-color') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-review-link-color">Review Link Color</label>
+								<input type="color" name="bizinga-review-link-color" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-review-link-color') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-review-star-color">Review Star Color</label>
+								<input type="color" name="bizinga-review-star-color" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-review-star-color') ); ?>"/>
+							</div>
+							<div>
+								<label for="bizinga-review-star-background-color">Review Star Background Color</label>
+								<input type="color" name="bizinga-review-star-background-color" class="small-txt" value="<?php echo esc_attr( get_option('bizinga-review-star-background-color') ); ?>"/>
 							</div>
 							<div>
 								<label for="password2">Reviews Summary TAB</label>
 								<label class="switch">
 									<input class="switch-input" type="checkbox" style="display: none;" name="demo-checkbox" value="1" <?php checked(1, get_option('demo-checkbox'), true); ?> />
-									<span class="switch-label" data-on="On" data-off="Off"></span> 
-									<span class="switch-handle"></span> 
-								</label>
-							</div>
-							<div>
-								<label for="password2">Display Appointment TAB</label>
-								<label class="switch">
-									<input class="switch-input" type="checkbox" style="display: none;" name="Appointment-tab" value="1" <?php checked(1, get_option('Appointment-tab'), true); ?> />
-									<span class="switch-label" data-on="On" data-off="Off"></span> 
-									<span class="switch-handle"></span> 
-								</label>
-							</div>
-							<div>
-								<label for="password2">Write Review TAB</label>
-								<label class="switch">
-									<input class="switch-input" type="checkbox" style="display: none;" name="review-tab" value="1" <?php checked(1, get_option('review-tab'), true); ?> />
 									<span class="switch-label" data-on="On" data-off="Off"></span> 
 									<span class="switch-handle"></span> 
 								</label>
@@ -222,7 +223,6 @@ class Bizinga_Admin {
 							<div>
 							<?php submit_button(); ?>
 							</div>
-
 						</form>
 					</div>
 				</div>

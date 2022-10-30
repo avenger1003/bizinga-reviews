@@ -29,28 +29,7 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 	 $(document).ready(function(){
-		$('#border_container').change(function(){
-			//Selected value
-			let inputValue = $(this).val();
-			if(inputValue == 1 ) {
-				$('.bizinga-border-size').show();
-				$('.bizinga-border-color').hide();
-				$('.bizinga-border-radius').hide();
-			} else if(inputValue == 2 ) {
-				$('.bizinga-border-color').show();
-				$('.bizinga-border-size').hide();
-				$('.bizinga-border-radius').hide();
-			} else if(inputValue == 3 ) {
-				$('.bizinga-border-color').hide();
-				$('.bizinga-border-size').hide();
-				$('.bizinga-border-radius').show();
-			} else {
-				$('.bizinga-border-size').hide();
-				$('.bizinga-border-color').hide();
-				$('.bizinga-border-radius').hide();
-			}
-		
-		});
+		console.log("*************STOP OPENING CONSOLE*************");
 	});
 
 })( jQuery );

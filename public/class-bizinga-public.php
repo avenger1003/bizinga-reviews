@@ -112,7 +112,7 @@ class Bizinga_Public {
 		add_shortcode( 'bizinga-reviews', array( $this, 'bizinga_ui') );
 	}
 
-	public function bizinga_ui() {
+	public function bizinga_ui($atts) {
 		$businessNumber = get_option('businessNumber');
 		$apiKey = get_option('apiKey');
 		$apiHost = get_option('apiHost');
@@ -133,17 +133,17 @@ class Bizinga_Public {
 				)
 			);
 			
-			$context1 = stream_context_create($opts1);
-			?>
+		$context1 = stream_context_create($opts1);
+		$bizinga_atts = shortcode_atts( array('bid'=>$businessNumber), $atts );
+		?>
 		<section>
-			
 		<script type="text/javascript">
 			const ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 		</script>
 			<?php
-			$reviewerHtml ='<div class="owl-carousel owl-theme">';
+			$reviewerHtml ='<div id="bizinga-reviews-carousel" class="owl-carousel owl-theme">';
 			// Reviews GET API consume
-			$response = file_get_contents('https://' . $apiHost . '/resources/v1/review/businessId/' . $businessNumber . '?api_key=' . $apiKey . '&sindex=0&count='.$numOfReviews , false, $context1);
+			$response = file_get_contents('https://' . $apiHost . '/resources/v1/review/businessId/' . $bizinga_atts['bid'] . '?api_key=' . $apiKey . '&sindex=0&count='.$numOfReviews , false, $context1);
 			$objReviews = json_decode($response);
 		
 			foreach($objReviews as $objReview) {
@@ -163,16 +163,17 @@ class Bizinga_Public {
 											$reviewerHtml.='<span class="star-num">'.$objReview->rating.'<span><img src='.plugin_dir_url(( __FILE__ ) ) . 'images/fill-2-copy-45.svg'.'></span></span>';
 										}	
 										if ($objReview->sourceType == 'BizingaReviews') {
-											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
+											$reviewerHtml.='<span class="on-brand"><a target=_blank href='.$objReview->uniqueReviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
 										} else {
-											$reviewerHtml.='<span class="on-brand"><a target=_blank style="color: #1976d2"; href='.$objReview->reviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a>,</span></span><div class="date">'.$objReview->reviewDate .'</div>';
+											$reviewerHtml.='<span class="on-brand"><a target=_blank href='.$objReview->reviewUrl.'>on <span class="brand">'.$objReview->sourceType.'</a></span></span><div class="date">'.$objReview->reviewDate .'</div>';
 										} 
-										$max = 35;
+										$max = 25;
 										if( strlen( $objReview->comments ) > $max ) {
-											$reviewerHtml .= substr( $objReview->comments, 0, $max ). '<a target=_blank style="color: #1976d2"; href='.$objReview->uniqueReviewUrl.'> Read more</a>';
+											$reviewerHtml .= substr( $objReview->comments, 0, $max ). '<a target=_blank style="text-decoration: underline" href='.$objReview->uniqueReviewUrl.'> read more</a>';
 										} else {
 											$reviewerHtml .= $objReview->comments;
 										} 
+										// $this->truncateString($objReview->comments, 15);
 										$reviewerHtml .='</p>
 									</div>
 								</div>
@@ -190,9 +191,14 @@ class Bizinga_Public {
 		$borderSize = get_option('bizinga-border-size');
 		$borderColor = get_option('bizinga-border-color');
 		$borderRadius = get_option('bizinga-border-radius');
+		$reviewTextColor = get_option('bizinga-review-color');
+		$reviewBackgroundColor = get_option('bizinga-review-background');
+		$reviewLinkColor = get_option('bizinga-review-link-color');
+		$reviewStarColor = get_option('bizinga-review-star-color');
+		$reviewStarBackgroundColor = get_option('bizinga-review-star-background-color');
 		wp_enqueue_style(
 			$this->Bizinga.'-custom-style',
-			plugin_dir_url( __FILE__ ) . 'css/custom_script.css', array(), $this->version, 'all'
+			plugin_dir_url( __FILE__ ) . 'css/bizinga-public.css', array(), $this->version, 'all'
 		);
 		//All the user input CSS settings as set in the plugin settings
 		$custom_style_css = "
@@ -200,19 +206,32 @@ class Bizinga_Public {
 			border-width: {$borderSize}px;
 			border-color: {$borderColor};
 			border-radius: {$borderRadius}px;
+			background-color: {$reviewBackgroundColor};
+			color: {$reviewTextColor};
+		}
+		.owl-carousel .star-num{
+		  background-color: {$reviewStarBackgroundColor};
+		  color: {$reviewStarColor};
+		}
+		.owl-item .card a{
+			color: {$reviewLinkColor};
+		}
+		.owl-item .card .on-brand .brand{
+			color: {$reviewLinkColor};
+		}
+		.owl-carousel .date{
+			color: {$reviewTextColor};
 		}";
 
 	//Add the above custom CSS via wp_add_inline_style
 	wp_add_inline_style( $this->Bizinga.'-custom-style', $custom_style_css ); //Pass the variable into the main style sheet ID
 	}
 
-	public function truncateString($str, $num) {
-		// If the length of str is less than or equal to num
-		// just return str--don't truncate it.
-		if ($str.length <= $num) {
-		  return $str;
-		}
-		// Return str truncated with '...' concatenated to the end of str.
-		return $str.slice(0, $num) + '...';
-	  }
+	public function truncateString($str, $max) {
+		if( strlen( $str ) > $max ) {
+			return substr( $str, 0, $max ). '<a target=_blank style="text-decoration: underline" href='.$objReview->uniqueReviewUrl.'> read more</a>';
+		} else {
+			return $str;
+		} 
+	}
 }
